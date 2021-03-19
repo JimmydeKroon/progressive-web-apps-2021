@@ -1,26 +1,51 @@
 <%- include('partials/head.ejs'); %>
 
-<h1 class="countdown-title">The next Spacex launch is in</h1>
+<h1 class="details-title"><%- launchDataId.name %></h1>
+<p class="details-description"><%- launchDataId.details %></p>
 
-<div class="countdown">
+<!-- launchpadinfo -->
+<div class='extrainfo'>
+
+    <div class='launchpadinfo hoverscale'>
+
+      <img class='launchpad-img' src='/img/launchpad.jpg'>
+      <h2 class='launchpad-title'>Launchpad</h2>
+      <h3 class='launchpad-name'><%- launchpadData.name %></h3>
+      <p class='launchpad-location'>Location: <%- launchpadData.locality %>, <%- launchpadData.region %></p>
+
+    </div>
+
+    <!-- payloadinfo -->
+    <div class='payloadinfo hoverscale'>
+
+        <img class='payload-img' src='/img/payload.jpg'>
+        <h2 class='payload-title'>Payload</h2>
+        <h3 class='payload-type'>Type: <%- payloadData.type %></h3>
+        <p class='payload-kg'>mass kg: <%- payloadData.mass_kg %></p>
+
+    </div>
+
+</div>
+
+<div class="details-countdown">
 
     <div class="countdown-wrap">
-      <div class="countdown-days">0</div>
+      <div class="countdown-days"></div>
       <div class="countdown-label">Days</div>
     </div>
 
     <div class="countdown-wrap">
-      <div class="countdown-hours">0</div>
+      <div class="countdown-hours"></div>
       <div class="countdown-label">Hours</div>
     </div>
 
     <div class="countdown-wrap">
-      <div class="countdown-minutes">0</div>
+      <div class="countdown-minutes"></div>
       <div class="countdown-label">Minutes</div>
     </div>
 
     <div class="countdown-wrap">
-      <div class="countdown-seconds">0</div>
+      <div class="countdown-seconds"></div>
       <div class="countdown-label">Seconds</div>
     </div>
 
@@ -59,26 +84,10 @@ const updateCountdown = setInterval(function() {
 }, 1000)
 </script>
 
-<div class="launchlinks">
-  <a href="<%- launchDataNext.links.youtube_id %>" target="_blank">
-    <img class='nextlaunchinfo-img' src="/img/youtube_logo.png">
-  </a>
+<img class='flightpatch-img' src='<%- launchDataNext.links.patch.small %>'>
 
-  <a href="<%- launchDataNext.links.reddit.campaign %>" target="_blank">
-    <img class='nextlaunchinfo-img' src="/img/reddit_logo.png">
-  </a>
-
-  <a href="<%- launchDataNext.links.wikipedia %>" target="_blank">
-    <img class='nextlaunchinfo-img' src="/img/wiki_logo.png">
-  </a>
-</div>
-
-<span class='linkshelper'>&#10548;</span>
-<span class='linkshelper-text'>Watch or read up on this launch with the following links!</span>
-
-<div class="detailsbutton">
-  <a href="/details/<%- launchDataNext.id %>">See launch details</a>
+<div class="backbutton">
+    <a href="/">❮</a>
 </div>
 
 <%- include('partials/footer.ejs'); %>
-

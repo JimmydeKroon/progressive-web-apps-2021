@@ -59,6 +59,10 @@ app.get('/details/:id', async function(req, res) {
 	});
 });
 
+app.get('/offline', (req, res) => {
+  res.render('offline')
+})
+
 // Actually set up the server
 app.listen(3000, function() {
 	console.log(`Application started on port: 3000`);

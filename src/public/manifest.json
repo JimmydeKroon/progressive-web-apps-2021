@@ -1,0 +1,16 @@
+{
+    "name": "Spacex next launch information",
+    "short_name": "Spacex launch",
+    "description": "Progressive web app that shows when the next spacex launch will be + information about that launch.",
+    "icons": [
+      {
+        "src": "/img/icon-255.png",
+        "sizes": "255x255",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "fullscreen",
+    "theme_color": "#B12A34",
+    "background_color": "#B12A34"
+  }

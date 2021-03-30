@@ -1,5 +1,6 @@
-const cacheName = 'v1';
+const cacheName = 'v2';
 const cacheAssets = [
+    '/',
     '/css/style.css',
     '/js/main.js',
     '/offline'
@@ -58,6 +59,5 @@ self.addEventListener("fetch", (event) => {
                 return caches.open(cacheName).then(cache => cache.match('/offline'))
             })
     })
-)
-          
+)        
 })

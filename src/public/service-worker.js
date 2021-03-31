@@ -2,7 +2,7 @@ const cacheName = 'v2';
 const cacheAssets = [
     '/',
     '/css/style.css',
-    '/js/main.js',
+    '/main.js',
     '/offline'
 ];
 
@@ -13,6 +13,7 @@ self.addEventListener('install', e => {
     e.waitUntil(
       caches.open(cacheName)
         .then(cache => {
+          console.log(cache);
           console.log('service worker: caching files');
           cache.addAll(cacheAssets);
         })

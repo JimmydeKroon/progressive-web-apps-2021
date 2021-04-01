@@ -36,6 +36,19 @@ Request limit information: 50 requests per second.
 
 ![details](docs/img/details.png "Home countdown")
 
+# Packages
+npm packages used in this project
+
+- Express [Link](https://expressjs.com/)
+- EJS [link](https://ejs.co/)
+- node-fetch [link](https://www.npmjs.com/package/node-fetch)
+
+## Dev dependencies
+
+- nodemon [link](https://www.npmjs.com/package/nodemon)
+
+
+
 # Server Side Rendering
 Setting up this progressive webapp was difficult, it was the first time using node for me so i needed some extra time to learn and experiment. This webapp has 2 main pages, the "home" page ('/') and the "details" page ('/details/:id').
 
@@ -96,6 +109,55 @@ The second route does multiple fetchrequests using promise.all. Then the details
 
 Currently i use some client side javascript to make the countdown, one of the things i would like to improve on this webapp is making the countdown function server side.
 
+
+
 # Progressive Web App
 
+After adding a service worker and making my manifest.json the webapp became installable.
 
+
+## Service worker & caching
+
+``` js
+const cacheAssets = [
+    '/',
+    '/css/style.css',
+    '/main.js',
+    '/offline'
+];
+```
+
+I cache the following files on the service worker install. Using a fetch event i check if the current page is in the cache, if it is the page is then served from the cache. If the user is offline and the page is not in the cache the offline page is served.
+
+
+# Critical render path
+
+The main network issues with this website came from the images. Images were very large and made the first page render very slow. 
+
+![network before](docs/img/network-before.png "Network before")
+
+This screenshot shows the situation before doing any optimizing. The main issue is the image file size and the fact that images start loading in after the css and js are done. Waiting for the css en js means 2 seconds are wasted before the images start loading.
+
+``` html
+<link rel="preload" href="/img/dog_space.png" as="image">
+```
+
+In order to solve this issue i added a preload to the \<head>. This makes the image load earlier. The images were still very large and took a lot of time to load so i resized all of the images to around the size i was using them on. This had the most dramatic effect as it changed some files to 10% of the original.
+
+![network after](docs/img/network-after.png "Network after")
+
+After this optimization the load times on slow 3G are drastically lower, going ~25 seconds to ~8 seconds!
+
+## Lighthouse
+
+Lighthouse reflects these changes aswell.
+
+![lighthouse before](docs/img/lighthouse-before.png "lighthouse before")
+
+The main issue in the performance is the largest contentful paint, this is mainly because of the large images. After the optimization my lighthouse score shot to 99.
+
+![lighthouse after](docs/img/lighthouse-after.png "lighthouse after")
+
+## minify css
+
+Even though it probably won't make much of a difference i wanted to minify my css, just so i know how it works. I used css-minify, a very simple version of minification. Since the file is already very small it did not make much of a difference but the file size went from ~5kb to ~3.5 kb. That is still a reduction of around 30%! So on larger files the difference could be drastic. (you can see this in the network screenshots).

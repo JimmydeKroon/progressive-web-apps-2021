@@ -38,7 +38,6 @@ self.addEventListener('activate', e => {
     )
 });
 
-
 self.addEventListener("fetch", (event) => {
   const req = event.request
   // console.log(req)

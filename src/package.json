@@ -4,8 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "npm run app & npm run minify",
+    "app": "node app.js",
+    "dev": "nodemon app.js",
+    "minify": "css-minify --dir /public/css --output /public/css"
   },
   "author": "",
   "license": "ISC",

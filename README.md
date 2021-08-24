@@ -50,7 +50,7 @@ npm packages used in this project
 
 
 # Server Side Rendering
-Setting up this progressive webapp was difficult, it was the first time using node for me so i needed some extra time to learn and experiment. This webapp has 2 main pages, the "home" page ('/') and the "details" page ('/details/:id').
+This project was built using node.js and serves as a chance for me to learn about some back-end & optimilization.  This webapp has 2 main routes, the "home" page ('/') and the "details" page ('/details/:id').
 
 ```js 
 let launchpadid
@@ -111,9 +111,9 @@ Currently i use some client side javascript to make the countdown, one of the th
 
 
 
-# Progressive Web App
+# Install the app locally
 
-After adding a service worker and making my manifest.json the webapp became installable.
+This app can be installed as a local app through the browser, click on the down arrow to the right of the adress bar.
 
 
 ## Service worker & caching
